@@ -72,6 +72,16 @@ resource "azurerm_network_interface" "main" {
 }
 
 
+data "azurerm_key_vault" "main" {
+  name                = "jonathanz-key-vault-1910"
+  resource_group_name = "test1"
+}
+
+data "azurerm_key_vault_secret" "main" {
+  name         = "etoropublic"
+  key_vault_id = data.azurerm_key_vault.main.id
+}
+
 resource "azurerm_virtual_machine" "main" {
   count = var.instance_count
   name                  = var.live == 0 ? "prodtest1-vm${count.index}" : "devtest1-vm${count.index}"
@@ -104,7 +114,8 @@ resource "azurerm_virtual_machine" "main" {
   }
   os_profile_linux_config {
     ssh_keys {
-      key_data = file("~/projects/Testone/etoro.pub")
+      key_data = data.azurerm_key_vault_secret.main.value
+      # key_data = file("~/projects/Testone/etoro.pub")
       path="/home/jonathan/.ssh/authorized_keys"
     }
     disable_password_authentication = true
