@@ -4,6 +4,11 @@ pipeline {
         string(name: 'Environment', defaultValue: 'dev', description: 'Environemnt')
     }
     stages {
+        stage('Init') {
+            steps {
+                sh "terraform init"
+            }
+        }
         stage('Validate') {
             steps {
                 sh "terraform validate"
