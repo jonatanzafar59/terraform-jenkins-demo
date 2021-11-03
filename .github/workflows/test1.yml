@@ -60,7 +60,7 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANTID }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTIONID }}
     environment: dev
-
+    YiT7Q&Fi_NH5lg7HdsubtS&1W3RU.EF4YRFi_
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
@@ -70,7 +70,7 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v2
-      
+
     - uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
@@ -83,4 +83,4 @@ jobs:
     
     - name: Terraform Plan
       id: plan
-      run: terraform plan
+      run: terraform plan -var-file dev.tfvars
