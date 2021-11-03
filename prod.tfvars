@@ -1,4 +1,3 @@
-resource_group_name="test2"
+resource_group_name="prodtest1"
 instance_count=3
-
 live=0

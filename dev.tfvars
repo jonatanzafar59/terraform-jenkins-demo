@@ -1,3 +1,1 @@
-resource_group_name="test2"
-instance_count=1
-live=1
+resource_group_name="devtest1"
